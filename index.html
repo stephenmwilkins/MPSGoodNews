@@ -1,0 +1,100 @@
+
+<head>
+<link rel="stylesheet" href="index.css">
+<script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type='text/javascript'>
+  var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1lMJYmS8jSPwX1cIzDTHaj02podtROKdJvN_Ul7bmi7s/edit?usp=sharing';
+
+  // var data = [{TITLE: "TITLE", DATE: "DATE", MESSAGE:"MESSAGE"}];
+
+  var go = false;
+  var data;
+
+  var bkg_colors = ['#003b49', '#1d4289', '#d3273e', '#1b365d', '#5d3754', '#005c5a', '#00bfb2', '#d6d2c4', '#ffc845', '#41b6e6', '#7da1c4', '#d0d3d4'];
+  // var font_colors = ['#FFFFFF','#FFFFFF','#FFFFFF','#FFFFFF','#FFFFFF','#FFFFFF','#000000','#000000','#000000','#000000','#000000','#000000','#000000'];
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+
+  function init() {
+    Tabletop.init( { key: publicSpreadsheetUrl,
+                     callback: getData,
+                     simpleSheet: true } )
+  }
+
+
+  function getData(d, tabletop) {
+    data = d;
+    console.log(data);
+    console.log("stories:", data.length)
+    showInfo();
+  }
+
+
+  function showInfo() {
+    i = getRandomInt(data.length);
+    console.log(i)
+
+    // fadein/out text
+
+    $("#HEADLINE").fadeOut(500, function() {
+      $(this).text(data[i]["HEADLINE"]).fadeIn(500);
+    });
+
+    $("#DATE").fadeOut(500, function() {
+      $(this).text(data[i]["DATE"]).fadeIn(500);
+    });
+
+    $("#MESSAGE").fadeOut(500, function() {
+      $(this).text(data[i]["MESSAGE"]).fadeIn(500);
+    });
+
+    // fadein/out image
+
+    img_src = data[i]["IMAGE"]
+    if (img_src.length == 0) {
+      img_src = 'imgs/t.png'
+    }
+
+    $("#IMAGE").fadeOut(500, function() {
+      $(this).attr("src", img_src).fadeIn(500);
+    });
+
+    // change color of background
+
+    j = getRandomInt(bkg_colors.length);
+    $('.main').animate({backgroundColor: bkg_colors[j]}, 1000);
+
+    //
+
+    setTimeout(showInfo, 5000);
+  }
+
+
+  window.addEventListener('DOMContentLoaded', init)
+</script>
+</head>
+
+
+
+<body>
+
+<div class="main"><div class="wrapper"><div class="content">
+
+<div class="text" id="DATE"></div>
+<div class="text" id="HEADLINE"></div>
+
+
+<div id="message_frame">
+  <img id="IMAGE" src="imgs/t.png">
+  <div class="text" id="MESSAGE"></div><br><br><br>
+</div>
+
+<img src="imgs/logo-white.png" width="100" margin="10px">
+
+</div></div></div>
+
+</body>

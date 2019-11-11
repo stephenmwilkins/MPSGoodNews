@@ -1,0 +1,64 @@
+body {
+  /* height: 1440px; */
+  /* width: 2560px; */
+}
+
+
+
+html, body {
+    height: 100%;
+}
+.main {
+    height: 100%;
+    width: 100%;
+    display: table;
+}
+.wrapper {
+    display: table-cell;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.content {
+  margin: auto;
+  width: 50%;
+  border: 3px solid white;
+  padding: 20px;
+  text-align: center;
+}
+
+.text {
+  color: white;
+  font-family: 'Arial', sans-serif;
+}
+
+#message_frame {
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width:800px;
+  height:450px;
+}
+
+
+#HEADLINE {
+  margin: 5px;
+  font-size: 50pt;
+
+}
+
+#DATE {
+  margin: 5px;
+  font-size: 25pt;
+}
+
+#MESSAGE {
+  margin: 5px;
+  font-size: 20pt;
+}
+
+
+#IMAGE {
+  max-width:600px;
+  max-height:400px;
+}
